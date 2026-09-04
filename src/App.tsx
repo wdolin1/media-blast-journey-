@@ -1,5 +1,5 @@
 import { Eyebrow } from './components/Eyebrow'
-import { JourneyStage } from './components/JourneyStage'
+import { JourneyScroller } from './components/JourneyScroller'
 import { PlaceholderImage } from './components/PlaceholderImage'
 import { SiteFooter } from './components/SiteFooter'
 import { SiteNav } from './components/SiteNav'
@@ -7,25 +7,22 @@ import { journeyStages } from './data/journey'
 
 function App() {
   return (
-    <div id="top" className="w-full overflow-hidden bg-cream font-body text-body">
+    <div id="top" className="w-full bg-cream font-body text-body">
       <SiteNav />
 
       {/* HERO */}
-      <div className="grid min-h-[520px] grid-cols-1 md:min-h-[640px] md:grid-cols-[1.05fr_1fr]">
+      <div className="grid min-h-[520px] grid-cols-1 md:min-h-[600px] md:grid-cols-[1.05fr_1fr]">
         <div className="flex flex-col justify-center bg-ink px-6 py-16 text-cream md:px-16 md:py-0">
-          <div className="mb-6 inline-flex items-center gap-2.5">
-            <span className="h-[3px] w-9 bg-gold" />
-            <span className="font-display text-[12.5px] font-bold tracking-[0.2em] text-gold uppercase">
-              Log &amp; Timber Home Preservation
-            </span>
-          </div>
+          <Eyebrow tone="gold" className="mb-6">
+            A Restoration Walkthrough
+          </Eyebrow>
           <h1 className="m-0 font-display text-5xl leading-[0.95] font-black tracking-[-0.02em] uppercase md:text-7xl">
-            Every cabin has a <span className="text-gold">restoration story.</span>
+            One cabin, <span className="text-gold">six stages</span> back to life.
           </h1>
           <p className="mt-7 max-w-[500px] text-lg leading-relaxed text-cream-on-dark">
-            This is a walkthrough of the stages a log cabin goes through on its way back to
-            life — from first inspection to the finished, protected finish. Follow the journey
-            below, stage by stage.
+            Scroll through this cabin's restoration from first inspection to final finish — the
+            photo alongside each stage changes as you go, so you can watch it come back to life
+            step by step.
           </p>
           <div className="mt-9 flex flex-wrap items-center gap-3.5">
             <a
@@ -33,12 +30,6 @@ function App() {
               className="rounded-sm bg-gold px-8 py-4 font-display text-[13.5px] font-extrabold tracking-[0.1em] text-ink uppercase"
             >
               Start the Journey
-            </a>
-            <a
-              href="#stages"
-              className="rounded-sm border-2 border-cream/35 px-7 py-3.5 font-display text-[13.5px] font-bold tracking-[0.1em] text-cream uppercase"
-            >
-              Jump to Stages
             </a>
           </div>
         </div>
@@ -63,11 +54,12 @@ function App() {
         <div>
           <p className="mb-4 text-lg leading-relaxed text-body-muted md:text-[18.5px]">
             Restoring a log cabin isn't one job — it's a sequence of stages, each building on the
-            last. Below is that sequence, in order, with what actually happens at each step.
+            last. As you scroll, the photo beside each stage will update to show the cabin at
+            that point in the process.
           </p>
           <p className="mb-0 text-lg leading-relaxed text-body-muted md:text-[18.5px]">
-            The photos and stage details here are placeholders for now — this cabin's real story
-            (and the guides, spec sheets, and files for each stage) will replace them soon.
+            The photos and stage details here are placeholders for now — this cabin's real photos
+            and the guides, spec sheets, and files for each stage will replace them soon.
           </p>
         </div>
       </div>
@@ -96,10 +88,8 @@ function App() {
         </div>
       </div>
 
-      {/* STAGES */}
-      {journeyStages.map((stage, index) => (
-        <JourneyStage key={stage.id} stage={stage} index={index} />
-      ))}
+      {/* SCROLL-DRIVEN WALKTHROUGH */}
+      <JourneyScroller stages={journeyStages} />
 
       <SiteFooter />
     </div>
